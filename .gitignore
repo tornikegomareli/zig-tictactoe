@@ -1,0 +1,42 @@
+# Zig cache
+.zig-cache/
+zig-out/
+
+# Build artifacts
+*.exe
+*.pdb
+*.lib
+*.a
+*.so
+*.dylib
+*.dll
+
+# Editor directories and files
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Debug files
+*.dSYM/
+
+# Test coverage
+*.gcov
+*.gcda
+*.gcno
+
+# Documentation
+docs/build/
+
+# Dependency directories
+.gyro/
+gyro.lock
+.zigmod/
+zigmod.lock
+
+# OS generated files
+Thumbs.db
+.Spotlight-V100
+.Trashes
