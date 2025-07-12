@@ -231,4 +231,8 @@ pub const NetworkGame = struct {
     pub fn handleRemoteMove(self: *NetworkGame) void {
         self.is_my_turn = true;
     }
+
+    pub fn handleReset(self: *NetworkGame) void {
+        self.is_my_turn = (self.local_player == 1);
+    }
 };
