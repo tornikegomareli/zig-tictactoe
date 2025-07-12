@@ -127,6 +127,7 @@ pub fn main() !void {
                             gameState = game.GameState.init();
                             if (!is_local_play) {
                                 try netGame.sendMessage(.reset);
+                                netGame.handleReset();
                             }
                         }
                     }
@@ -141,6 +142,7 @@ pub fn main() !void {
                             },
                             .reset => {
                                 gameState = game.GameState.init();
+                                netGame.handleReset();
                             },
                             .disconnect => {
                                 netGame.deinit();
