@@ -85,17 +85,17 @@ pub fn drawGameOver(state: *const game.GameState, mouse_pos: rl.Vector2) ?bool {
     return false;
 }
 
-pub fn drawMainMenu(ui: *const ui_state.UIContext, mouse_pos: rl.Vector2) ui_state.MenuSelection {
+pub fn drawMainMenu(_: *const ui_state.UIContext, mouse_pos: rl.Vector2) ?ui_state.MenuSelection {
     const title = "Tic Tac Toe";
-    const title_size = 60;
+    const title_size = 50;
     const title_width = rl.measureText(title, title_size);
-    rl.drawText(title, @divFloor(constants.SCREEN_WIDTH - title_width, 2), 80, title_size, rl.Color.black);
+    rl.drawText(title, @divFloor(constants.SCREEN_WIDTH - title_width, 2), 60, title_size, rl.Color.black);
 
-    const button_width = 300;
-    const button_height = 60;
+    const button_width = 200;
+    const button_height = 50;
     const button_x = @divFloor(constants.SCREEN_WIDTH - button_width, 2);
-    var button_y: i32 = 200;
-    const button_spacing = 80;
+    var button_y: i32 = 180;
+    const button_spacing = 70;
 
     const buttons = [_]struct { text: [:0]const u8, selection: ui_state.MenuSelection }{
         .{ .text = "Local Play", .selection = .local_play },
@@ -103,7 +103,7 @@ pub fn drawMainMenu(ui: *const ui_state.UIContext, mouse_pos: rl.Vector2) ui_sta
         .{ .text = "Join Game", .selection = .join_game },
     };
 
-    var hovered_selection = ui.menu_selection;
+    var hovered_selection: ?ui_state.MenuSelection = null;
 
     for (buttons) |button| {
         const is_hovered = mouse_pos.x >= @as(f32, @floatFromInt(button_x)) and
@@ -115,8 +115,8 @@ pub fn drawMainMenu(ui: *const ui_state.UIContext, mouse_pos: rl.Vector2) ui_sta
         rl.drawRectangle(button_x, button_y, button_width, button_height, color);
         rl.drawRectangleLines(button_x, button_y, button_width, button_height, rl.Color.black);
 
-        const text_width = rl.measureText(button.text, 30);
-        rl.drawText(button.text, button_x + @divFloor(button_width - text_width, 2), button_y + 15, 30, rl.Color.white);
+        const text_width = rl.measureText(button.text, 25);
+        rl.drawText(button.text, button_x + @divFloor(button_width - text_width, 2), button_y + 12, 25, rl.Color.white);
 
         if (is_hovered) {
             hovered_selection = button.selection;

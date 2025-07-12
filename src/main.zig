@@ -18,6 +18,7 @@ pub fn main() !void {
     var ui = ui_state.UIContext.init();
     var is_local_play = false;
 
+    rl.setConfigFlags(rl.ConfigFlags{ .window_highdpi = true, .window_resizable = false });
     rl.initWindow(constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT, "Tic Tac Toe - Multiplayer");
     defer rl.closeWindow();
 
@@ -34,23 +35,24 @@ pub fn main() !void {
         switch (ui.state) {
             .main_menu => {
                 const hovered = renderer.drawMainMenu(&ui, mouse_position);
-                ui.menu_selection = hovered;
 
                 if (rl.isMouseButtonPressed(.left)) {
-                    switch (hovered) {
-                        .local_play => {
-                            ui.state = .in_game;
-                            is_local_play = true;
-                            gameState = game.GameState.init();
-                        },
-                        .host_game => {
-                            ui.state = .host_lobby;
-                            ui.clearError();
-                        },
-                        .join_game => {
-                            ui.state = .join_lobby;
-                            ui.clearError();
-                        },
+                    if (hovered) |selection| {
+                        switch (selection) {
+                            .local_play => {
+                                ui.state = .in_game;
+                                is_local_play = true;
+                                gameState = game.GameState.init();
+                            },
+                            .host_game => {
+                                ui.state = .host_lobby;
+                                ui.clearError();
+                            },
+                            .join_game => {
+                                ui.state = .join_lobby;
+                                ui.clearError();
+                            },
+                        }
                     }
                 }
             },
