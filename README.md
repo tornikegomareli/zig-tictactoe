@@ -2,6 +2,9 @@
 
 A multiplayer Tic Tac Toe game built to learn the Zig programming language.
 
+![CleanShot 2025-07-13 at 03 11 27](https://github.com/user-attachments/assets/7ff5ff5c-0f09-4dbe-b793-e4672a9ecee6)
+
+
 ## Educational Purpose
 
 This project was created for educational purposes to learn:
